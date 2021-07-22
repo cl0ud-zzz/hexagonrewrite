@@ -1,14 +1,14 @@
 --[[
-Made by xduxy#1337
+Made by cl0ud
 --]]
 
 local Hint = Instance.new("Hint", game.CoreGui)
-Hint.Text = "Hexagon | Waiting for the game to load..."
+Hint.Text = "Hexagon Rewritten | Waiting for the game to load..."
 
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
-Hint.Text = "Hexagon | Setting up environment..."
+Hint.Text = "Hexagon Rewritten | Setting up environment..."
 
 -- Services
 local UserInputService = game:GetService("UserInputService")
@@ -29,44 +29,44 @@ if (listfiles == false) then return game.Players.LocalPlayer:Kick("Exploit not s
 if (isfolder == false) then return game.Players.LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 if (hookfunc == false) then return game.Players.LocalPlayer:Kick("Exploit not supported! Missing: hookfunc.") end
 
-Hint.Text = "Hexagon | Setting up configuration settings..."
+Hint.Text = "Hexagon Rewritten | Setting up configuration settings..."
 
-if not isfolder("hexagon") then
+if not isfolder("hexagonV2") then
 	print("creating hexagon folder")
-	makefolder("hexagon")
+	makefolder("hexagonV2")
 end
 
-if not isfolder("hexagon/configs") then
+if not isfolder("hexagonV2/configs") then
 	print("creating hexagon configs folder")
-	makefolder("hexagon/configs")
+	makefolder("hexagonV2/configs")
 end
 
-if not isfile("hexagon/autoload.txt") then
+if not isfile("hexagonV2/autoload.txt") then
 	print("creating hexagon autoload file")
 	writefile("hexagon/autoload.txt", "")
 end
 
-if not isfile("hexagon/custom_skins.txt") then
+if not isfile("hexagonV2/custom_skins.txt") then
 	print("downloading hexagon custom skins file")
 	writefile("hexagon/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_skins.txt"))
 end
 
-if not isfile("hexagon/custom_models.txt") then
+if not isfile("hexagonV2/custom_models.txt") then
 	print("downloading hexagon custom models file")
 	writefile("hexagon/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_models.txt"))
 end
 
-if not isfile("hexagon/inventories.txt") then
+if not isfile("hexagonV2/inventories.txt") then
 	print("downloading hexagon inventories file")
 	writefile("hexagon/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/inventories.txt"))
 end
 
-if not isfile("hexagon/skyboxes.txt") then
+if not isfile("hexagonV2/skyboxes.txt") then
 	print("downloading hexagon skyboxes file")
 	writefile("hexagon/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
 end
 
-Hint.Text = "Hexagon | Loading..."
+Hint.Text = "Hexagon Rewritten| Loading..."
 
 -- Viewmodels fix
 for i,v in pairs(game.ReplicatedStorage.Viewmodels:GetChildren()) do
@@ -89,7 +89,7 @@ local Hitboxes = {
 }
 
 local HexagonFolder = Instance.new("Folder", workspace)
-HexagonFolder.Name = "Hexagonv2Folder"
+HexagonFolder.Name = "HexagonFolder"
 
 local oldOsPlatform = game.Players.LocalPlayer.OsPlatform
 local oldMusicT = game.Players.LocalPlayer.PlayerGui.Music.ValveT:Clone()
@@ -114,8 +114,8 @@ local FOVCircle = Drawing.new("Circle")
 local Cases = {}; for i,v in pairs(game.ReplicatedStorage.Cases:GetChildren()) do table.insert(Cases, v.Name) end
 
 local Configs = {}
-local Inventories = loadstring("return "..readfile("hexagon/inventories.txt"))()
-local Skyboxes = loadstring("return "..readfile("hexagon/skyboxes.txt"))()
+local Inventories = loadstring("return "..readfile("hexagonV2/inventories.txt"))()
+local Skyboxes = loadstring("return "..readfile("hexagonV2/skyboxes.txt"))()
 
 
 
@@ -1517,17 +1517,13 @@ local SettingsTab = Window:CreateTab("Settings")
 
 local SettingsTabCategoryMain = SettingsTab:AddCategory("Main", 1)
 
-SettingsTabCategoryMain:AddKeybind("Toggle Keybind", Enum.KeyCode.Insert, "SettingsTabCategoryUIToggleKeybind")
+SettingsTabCategoryMain:AddKeybind("Toggle Keybind", Enum.KeyCode.RightShift, "SettingsTabCategoryUIToggleKeybind")
 
-SettingsTabCategoryMain:AddButton("Server Rejoin (save config before press)", function()
+SettingsTabCategoryMain:AddButton("Server Rejoin", function()
     game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
 end)
 
-SettingsTabCategoryMain:AddButton("Copy Rewritten Discord Invite", function()
-	setclipboard("https://discord.gg/67YX3zgpvg")
-end)
-
-SettingsTabCategoryMain:AddButton("Copy Original Discord Invite", function()
+SettingsTabCategoryMain:AddButton("Copy Discord Invite", function()
 	setclipboard("https://discord.gg/FdrQZ6sD5T")
 end)
 
